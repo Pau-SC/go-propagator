@@ -46,7 +46,7 @@ with it to understand how problems are approached in this language and how profe
 
 ```bash
 # Prerequisites: Go 1.22+
-git clone https://github.com/pau-sc/go-propagator.git
+git clone https://github.com/pausic/go-propagator.git
 cd go-propagator
 
 # Configure targets

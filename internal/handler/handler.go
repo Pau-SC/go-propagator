@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/pau-sc/go-propagator/internal/config"
+	"github.com/pausic/go-propagator/internal/config"
 )
 
 type WebhookHandler struct {

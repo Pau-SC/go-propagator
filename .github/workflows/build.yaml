@@ -31,4 +31,4 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/pau-sc/go-propagator:latest
+          tags: ghcr.io/pausic/go-propagator:latest

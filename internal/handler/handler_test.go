@@ -9,7 +9,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/pau-sc/go-propagator/internal/config"
+	"github.com/pausic/go-propagator/internal/config"
 )
 
 func newTarget(t *testing.T, bodies *[]string, mu *sync.Mutex) *httptest.Server {

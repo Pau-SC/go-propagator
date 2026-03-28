@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/pau-sc/go-propagator/internal/config"
-	"github.com/pau-sc/go-propagator/internal/handler"
+	"github.com/pausic/go-propagator/internal/config"
+	"github.com/pausic/go-propagator/internal/handler"
 )
 
 func main() {

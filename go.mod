@@ -1,4 +1,4 @@
-module github.com/pau-sc/go-propagator
+module github.com/pausic/go-propagator
 
 go 1.26.1
 
