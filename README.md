@@ -3,14 +3,11 @@
 Webhook proxy for Kubernetes environments. Receives incoming webhooks
 and propagates them concurrently to multiple configured targets.
 
-Built with Go's standard library — no frameworks, no external HTTP routers,
-no DI containers.
-
 ## Motivation
 
 I needed a way to route Grafana alerts to multiple endpoints in my FluxCD k3s
 homelab. Rather than reaching for an existing tool, I used it as an opportunity
-to learn Go by building something I'd actually deploy and operate.
+to do it in Go by building something I'd actually deploy and operate.
 
 ## What it does
 
@@ -27,19 +24,9 @@ to all configured endpoints with bounded concurrency. Returns:
 - `207` — some targets failed, some succeeded
 - `500` — all targets failed
 
-## Learnings
-
-**Concurrency** — Used a channel as a semaphore to bound fan-out, understanding the importance of this mechanism in Go's concurrency model.
-
-**Error handling** — Practiced some error handling and error propagation.
-
-**Implicit interfaces** — Types satisfy interfaces by having the right methods, which is something I enjoyed.
-
-**Testing** — Learned about the common approaches to testing on Go, such as table tests.
-
 ## AI usage
 
-It made easier to translate my theoretical knowledge and NodeJS experience to Go idioms, by sparring my ideas
+It made easier to translate my current knowledge to Go idioms, by sparring my ideas
 with it to understand how problems are approached in this language and how professional code is developed in OSS.
 
 ## Local setup
@@ -83,4 +70,26 @@ webhooks:
 | `webhooks` | Target URLs to propagate to |
 
 Override config path via `CONFIG_PATH` env var.
+
+## Docker
+
+Images are published to GHCR on every push to master (`:latest`) and on version tags (`:0.1.0`, `:0.1`).
+
+```bash
+docker run -v $(pwd)/config.yaml:/config.yaml -e CONFIG_PATH=/config.yaml -p 8080:8080 ghcr.io/pausic/go-propagator:latest
+```
+
+Or with Docker Compose:
+
+```yaml
+services:
+  go-propagator:
+    image: ghcr.io/pausic/go-propagator:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.yaml:/config.yaml
+    environment:
+      - CONFIG_PATH=/config.yaml
+```
 
